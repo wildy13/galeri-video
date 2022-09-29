@@ -1,0 +1,8 @@
+# Dependency directories
+backend/node_modules/ 
+
+# Optional eslint cache
+backend/.eslintcache
+
+# dotenv environment variables file
+backend/.env
