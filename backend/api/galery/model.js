@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../../config');
 const Category = require('../category/model');
+const User = require('../user/model');
 
 const Galery = sequelize.define(
   'galery',
@@ -27,8 +28,12 @@ const Galery = sequelize.define(
     },
 
     createdBy: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: User,
+          key: 'id',
+        }
     },
 
     categoryId: {
