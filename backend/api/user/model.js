@@ -13,7 +13,7 @@ const User = sequelize.define(
       allowNull: false,
     },
 
-    employeeNo: {
+/*     employeeNo: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
@@ -23,7 +23,7 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-
+ */
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -41,7 +41,7 @@ const User = sequelize.define(
         this.setDataValue('password', hashSync(value, salt));
       },
     },
-    email: {
+/*     email: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -55,7 +55,7 @@ const User = sequelize.define(
         model: Role,
         key: 'id',
       },
-    },
+    }, */
   },
   {
     tableName: 'tblUser',

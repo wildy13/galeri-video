@@ -25,7 +25,7 @@ export default function Tube() {
                     </div>
 
                     <hr className="my-8 border-gray-200 dark:border-gray-700" />
-                    <div className="container container mx-auto overflow-hidden overflow-y-auto h-[1400px]">
+                    <div className="container mx-auto overflow-hidden overflow-y-auto h-[1400px]">
                         <div className="grid grid-cols-4 gap-8  md:grid-cols-2 xl:grid-cols-3 ">
                             <div>
                                 <iframe className="rounded-lg lg:w-full md:w-80" width="470" height="320" src="https://www.youtube.com/embed/T9UaOXfilFo" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>

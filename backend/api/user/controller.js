@@ -39,20 +39,16 @@ const getMe = async (req, res) => {
 
 const createUser = async (req, res) => {
   const {
-    fullName,
     username,
-    email,
-    employeeNo,
-    roleId,
+    password,
+    confPassword
   } = req.body;
 
   try {
     const newUser = new User({
-      fullName,
       username,
-      email,
-      employeeNo,
-      roleId,
+      password,
+      confPassword
     });
     const user = await newUser.save();
     res.status(200).json(user);
