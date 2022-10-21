@@ -12,9 +12,9 @@ const authLocal = async (req, res) => new Promise((resolve, reject) => {
     }
 
     const {
-      id, username, roleId, email, employeeNo,
+      id, username,
     } = user;
-    const token = signToken(id, username, roleId, email, employeeNo);
+    const token = signToken(id, username);
 
     resolve({ token });
   })(req, res);
@@ -22,6 +22,7 @@ const authLocal = async (req, res) => new Promise((resolve, reject) => {
 
 const login = async (req, res) => {
   try {
+    console.log('test')
     const token = await authLocal(req, res);
     res.status(200).json(token);
   } catch (err) {

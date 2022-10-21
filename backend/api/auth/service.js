@@ -25,14 +25,10 @@ const verifyToken = expressjwt({
 
 const signToken = (
   id,
-  fullName,
   username,
-  email,
-  employeeNo,
-  roleId,
 ) => jwt.sign(
   {
-    id, fullName, username, email, employeeNo, roleId,
+    id, username
   },
   secret.session,
   {
@@ -47,11 +43,7 @@ const isAuthenticated = () => async (req, res, next) => {
     const user = await User.findOne({
       attributes: [
         'id',
-        'fullName',
         'username',
-        'email',
-        'employeeNo',
-        'roleId',
       ],
       where: { username: req.auth.username },
     });

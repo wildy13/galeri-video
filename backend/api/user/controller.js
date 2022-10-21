@@ -5,10 +5,6 @@ const getuser = async (req, res) => {
     const user = await User.findAll({
       attributes: [
         'username',
-        'fullName',
-        'employeeNo',
-        'email',
-        'roleId',
       ],
     });
     res.status(200).json(user);
@@ -22,10 +18,6 @@ const getMe = async (req, res) => {
     const user = await User.findOne({
       attributes: [
         'username',
-        'fullName',
-        'employeeNo',
-        'email',
-        'roleId',
       ],
       where: {
         username: req.auth.username,
@@ -61,4 +53,9 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { getuser, getMe, createUser };
+const saveImage = async(imageDetail, res) => {
+  const save = await User.images.create(imageDetail);
+  res.status(200).json(save)
+}
+
+module.exports = { getuser, getMe, createUser,saveImage };

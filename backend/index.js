@@ -2,10 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const router = require('./router');
 const { sequelize, config: { host, port } } = require('./config');
-//const User = require('./api/user/model');
-// const Category = require('./api/category/model');
-// const Role = require('./api/role/model');
-// const User = require('./api/user/model');
+const User = require('./api/user/model');
 
 const app = express();
 app.use(cors());
@@ -15,6 +12,7 @@ const connect = async () => {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
+    User.sync({force:true})
     //User.sync({force:true})
   } catch (err) {
     throw new Error(err);

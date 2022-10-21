@@ -13,17 +13,6 @@ const User = sequelize.define(
       allowNull: false,
     },
 
-/*     employeeNo: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-    },
-
-    fullName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
- */
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -41,21 +30,11 @@ const User = sequelize.define(
         this.setDataValue('password', hashSync(value, salt));
       },
     },
-/*     email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isEmail: true,
-      },
-    },
-    roleId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      refrences: {
-        model: Role,
-        key: 'id',
-      },
-    }, */
+
+    image: {
+      type: DataTypes.BLOB('long'),
+      allowNull: true,
+    }
   },
   {
     tableName: 'tblUser',

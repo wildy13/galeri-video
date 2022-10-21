@@ -5,12 +5,8 @@ const localAuthenticate = async (User, username, password, done) => {
   const user = await User.findOne({
     attributes: [
       'id',
-      'fullName',
       'username',
       'password',
-      'roleId',
-      'email',
-      'employeeNo',
     ],
     where: { username },
   });
