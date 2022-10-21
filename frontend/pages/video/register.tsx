@@ -1,16 +1,17 @@
 import Link from "next/link";
 import Head from 'next/head';
 import FooterVideo from '../../components/Footer-Video'
+
+/*  for useState */
 const defaultFormData = {
     username: "",
     password: "",
     confPassword: "",
 }
+
 import styles from '../../styles/Home.module.css';
 import React, { useState } from "react";
 import axios from "axios";
-import { type } from "os";
-import { redirect } from "next/dist/server/api-utils";
 
 export default function Register() {
     const [msg, setMsg] = useState('')
@@ -27,13 +28,12 @@ export default function Register() {
     
     const register = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        try {
-            await axios.post('http://localhost:5001/api/user/', state)
-        } catch (error) {
-            if(error instanceof Error){
-                setMsg(error.response.data);
-            }
-        }
+        await axios.post('http://localhost:5001/api/user/', state)
+        .then(response => {
+            console.log(response)
+        }).catch(err => {
+            setMsg(err.response.data);
+        });
         setState(defaultFormData)
     }
     return (

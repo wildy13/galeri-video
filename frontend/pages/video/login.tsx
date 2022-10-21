@@ -2,6 +2,7 @@ import Link from "next/link";
 import Head from 'next/head';
 import FooterVideo from '../../components/Footer-Video'
 
+/* for useState */
 const defaultFormData = {
     username: "",
     password: "",
@@ -13,6 +14,7 @@ import { useState } from "react";
 export default function Login() {
     const [state, setState] = useState(defaultFormData);
     const [msg, setMsg] = useState('');
+    const [token, setToken] = useState('');
     const { username, password} = state; 
     const handleChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
         setState((prevState) => ({
@@ -23,17 +25,12 @@ export default function Login() {
     
     const login = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        try {
-            await axios.post('http://localhost:5001/api/auth/login', state)
-            .then(response => {
-               console.log(response.data)
-            })
-        } catch (error) {
-            if(error instanceof Error){
-                setMsg(error.response.data);
-            }
-        }
-        console.log(state)
+        await axios.post('http://localhost:5001/api/auth/login', state)
+        .then(response => {
+            setToken(response.data.token)
+        }).catch(err => {
+            setMsg(err.response.data)
+        })
         setState(defaultFormData);
     }
     return (
