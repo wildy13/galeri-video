@@ -2,8 +2,40 @@ import Link from "next/link";
 import Head from 'next/head';
 import FooterVideo from '../../components/Footer-Video'
 
+const defaultFormData = {
+    username: "",
+    password: "",
+}
+
 import styles from '../../styles/Home.module.css';
+import axios from "axios";
+import { useState } from "react";
 export default function Login() {
+    const [state, setState] = useState(defaultFormData);
+    const [msg, setMsg] = useState('');
+    const { username, password} = state; 
+    const handleChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
+        setState((prevState) => ({
+            ...prevState,
+            [e.target.id]: e.target.value,
+          }));
+    }
+    
+    const login = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            await axios.post('http://localhost:5001/api/auth/login', state)
+            .then(response => {
+               console.log(response.data)
+            })
+        } catch (error) {
+            if(error instanceof Error){
+                setMsg(error.response.data);
+            }
+        }
+        console.log(state)
+        setState(defaultFormData);
+    }
     return (
 
         <div className={styles.container}>
@@ -16,15 +48,20 @@ export default function Login() {
                     <h1 className="text-2xl p-1 font-semibold text-center text-gray-600 dark:text-white">Labtech Video Gallery</h1>
                     <p className="text-sm  text-center text-gray-600 font-normal dark:text-gray-400">Hey, enter your username and
                         <br />your password</p>
-                    <form className="mt-6">
+                    <form className="mt-6" onSubmit={ login }>
+                        <p className="text-center">{ msg }</p>
                         <div className="">
-                            <input type="text" className="block w-full px-5 py-2 mt-10 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 " placeholder="Username" />
+                            <input id="username" type="text" className="block w-full px-5 py-2 mt-10 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 " placeholder="Username" 
+                            value={ username } onChange={handleChange}
+                            />
                         </div>
 
                         <div className="mt-4">
                             <div className="flex items-center justify-between">
                             </div>
-                            <input type="password" className="block w-full px-4 py-2 mt-0 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
+                            <input id="password" type="password" className="block w-full px-4 py-2 mt-0 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" 
+                            value={password} onChange={handleChange}
+                            />
 
                         </div>
                         <p className="mt-2 p-2 text-xs font-semibold  text-gray-600 dark:text-gray-400">

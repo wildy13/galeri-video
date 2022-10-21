@@ -9,6 +9,8 @@ const defaultFormData = {
 import styles from '../../styles/Home.module.css';
 import React, { useState } from "react";
 import axios from "axios";
+import { type } from "os";
+import { redirect } from "next/dist/server/api-utils";
 
 export default function Register() {
     const [msg, setMsg] = useState('')
@@ -20,18 +22,19 @@ export default function Register() {
             [e.target.id]: e.target.value,
           }));
     }
+
+    const error: any = {};
+    
     const register = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5001/api/user/', state)
         } catch (error) {
-            if(error.response){
-                setMsg(error.response.data)
+            if(error instanceof Error){
+                setMsg(error.response.data);
             }
         }
-        console.log(state)
         setState(defaultFormData)
-        
     }
     return (
         <div className={styles.container}>
