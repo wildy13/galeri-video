@@ -12,11 +12,13 @@ const defaultFormData = {
 import styles from '../../styles/Home.module.css';
 import React, { useState } from "react";
 import axios from "axios";
+import Router from "next/router";
 
 export default function Register() {
     const [msg, setMsg] = useState('')
     const [state, setState] = useState(defaultFormData);
     const { username, password, confPassword} = state; 
+    
     const handleChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
         setState((prevState) => ({
             ...prevState,
@@ -24,13 +26,12 @@ export default function Register() {
           }));
     }
 
-    const error: any = {};
-    
     const register = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         await axios.post('http://localhost:5001/api/user/', state)
         .then(response => {
             console.log(response)
+            Router.push('/video/login');
         }).catch(err => {
             setMsg(err.response.data);
         });

@@ -11,11 +11,14 @@ const defaultFormData = {
 import styles from '../../styles/Home.module.css';
 import axios from "axios";
 import { useState } from "react";
+import Router from "next/router";
+
 export default function Login() {
     const [state, setState] = useState(defaultFormData);
     const [msg, setMsg] = useState('');
     const [token, setToken] = useState('');
     const { username, password} = state; 
+
     const handleChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
         setState((prevState) => ({
             ...prevState,
@@ -27,7 +30,8 @@ export default function Login() {
         e.preventDefault();
         await axios.post('http://localhost:5001/api/auth/login', state)
         .then(response => {
-            setToken(response.data.token)
+            setToken(response.data.token);
+            Router.push('/video/tube')
         }).catch(err => {
             setMsg(err.response.data)
         })
