@@ -1,8 +1,8 @@
-const auth = require('./api/auth')
+const auth = require('./api/auth');
 const user = require('./api/user');
 const role = require('./api/role');
-const category = require('./api/category')
-const galery = require('./api/galery')
+const category = require('./api/category');
+const galery = require('./api/galery');
 
 const router = (app) => {
   app.use('/api/auth', auth);

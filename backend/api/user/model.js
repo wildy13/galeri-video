@@ -1,14 +1,13 @@
 const { DataTypes } = require('sequelize');
 const { genSaltSync, hashSync, compareSync } = require('bcrypt');
 const { sequelize } = require('../../config/index');
-const Role = require('../role/model');
 
 const User = sequelize.define(
   'user',
   {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.INTEGER,
+      defaultValue: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
     },
@@ -34,7 +33,7 @@ const User = sequelize.define(
     image: {
       type: DataTypes.BLOB('long'),
       allowNull: true,
-    }
+    },
   },
   {
     tableName: 'tblUser',

@@ -22,7 +22,7 @@ const authLocal = async (req, res) => new Promise((resolve, reject) => {
 
 const login = async (req, res) => {
   try {
-    console.log('test')
+    console.log('test');
     const token = await authLocal(req, res);
     res.status(200).json(token);
   } catch (err) {

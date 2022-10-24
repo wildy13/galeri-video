@@ -33,14 +33,14 @@ const createUser = async (req, res) => {
   const {
     username,
     password,
-    confPassword
+    confPassword,
   } = req.body;
 
   try {
     const newUser = new User({
       username,
       password,
-      confPassword
+      confPassword,
     });
     const user = await newUser.save();
     res.status(200).json(user);
@@ -53,9 +53,11 @@ const createUser = async (req, res) => {
   }
 };
 
-const saveImage = async(imageDetail, res) => {
+const saveImage = async (imageDetail, res) => {
   const save = await User.images.create(imageDetail);
-  res.status(200).json(save)
-}
+  res.status(200).json(save);
+};
 
-module.exports = { getuser, getMe, createUser,saveImage };
+module.exports = {
+  getuser, getMe, createUser, saveImage,
+};

@@ -85,7 +85,7 @@ export default function Login() {
                         </Link>
                       <span className="w-3/5 border-b dark:border-gray-400 lg:w-1/4 md:w-1/4"></span>
                     </div>
-                    <p className="mt-8 text-xs font-light text-center text-gray-400"> Don't have an account? <a href="/video/register" className="font-medium text-gray-700 dark:text-gray-200 ">Request Now</a></p>
+                    <p className="mt-8 text-xs font-light text-center text-gray-400"> Do not have an account? <a href="/video/register" className="font-medium text-gray-700 dark:text-gray-200 ">Request Now</a></p>
                 </div>
                 <img src="/bg.gif"
                     className="absolute  z-10 lg:ml-[750px]  mt-30 object-cover lg:w-3/6  md:w-0  " />

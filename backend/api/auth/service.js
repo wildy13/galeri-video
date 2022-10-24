@@ -28,7 +28,7 @@ const signToken = (
   username,
 ) => jwt.sign(
   {
-    id, username
+    id, username,
   },
   secret.session,
   {

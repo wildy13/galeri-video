@@ -12,10 +12,12 @@ const getGalery = async (req, res) => {
 };
 
 const createGalery = async (req, res) => {
-  const { titile, description, video, createdBy, categoryId } = req.body;
+  const {
+    titile, description, video, createdBy, categoryId,
+  } = req.body;
   try {
     const newGalery = new Galery({
-      titile, description, video, createdBy, categoryId
+      titile, description, video, createdBy, categoryId,
     });
     const galery = await newGalery.save();
     res.status(200).json(galery);

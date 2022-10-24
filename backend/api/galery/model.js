@@ -23,17 +23,17 @@ const Galery = sequelize.define(
     },
 
     video: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
 
     createdBy: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: User,
-          key: 'id',
-        }
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: User,
+        key: 'id',
+      },
     },
 
     categoryId: {
